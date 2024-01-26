@@ -14,13 +14,36 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    id: DataTypes.STRING,
-    name: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    email: DataTypes.STRING,
-    nickname: DataTypes.STRING,
-    password: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
+    id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    name: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    phone: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    email: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    nickname: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    password: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    createdAt: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     modifiedAt: DataTypes.DATE
   }, {
     sequelize,

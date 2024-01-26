@@ -14,17 +14,46 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Activity.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
     orgId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    recruBegin: DataTypes.DATE,
-    recruEnd: DataTypes.DATE,
-    recruNum: DataTypes.INTEGER,
-    signedNum: DataTypes.INTEGER,
+    title: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    recruBegin: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
+    recruEnd: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
+    recruNum: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
+    signedNum: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
     content: DataTypes.TEXT,
-    actBegin: DataTypes.DATE,
-    actEnd: DataTypes.DATE,
-    createdAt: DataTypes.DATE,
+    actBegin: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
+    actEnd: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
+    createdAt: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     modifiedAt: DataTypes.DATE
   }, {
     sequelize,

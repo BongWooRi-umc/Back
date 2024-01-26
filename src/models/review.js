@@ -14,13 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Review.init({
-    id: DataTypes.INTEGER,
-    userid: DataTypes.STRING,
-    actId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
+      id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    userid: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    actId: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
+    title: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
     content: DataTypes.TEXT,
     score: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
+    createdAt: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     modifiedAt: DataTypes.DATE
   }, {
     sequelize,

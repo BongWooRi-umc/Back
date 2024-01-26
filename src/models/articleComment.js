@@ -14,11 +14,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ArticleComment.init({
-    id: DataTypes.INTEGER,
-    articleId: DataTypes.INTEGER,
-    userid: DataTypes.STRING,
+    id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    articleId: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
+    userid: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
     content: DataTypes.TEXT,
-    createdAt: DataTypes.DATE,
+    createdAt: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     modifiedAt: DataTypes.DATE
   }, {
     sequelize,

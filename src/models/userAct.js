@@ -14,9 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   UserAct.init({
-    id: DataTypes.INTEGER,
-    userid: DataTypes.STRING,
-    activityId: DataTypes.INTEGER,
+      id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    userid: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    activityId: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
     isFinished: DataTypes.BOOLEAN
   }, {
     sequelize,

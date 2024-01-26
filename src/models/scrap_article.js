@@ -14,9 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Scrap_article.init({
-    id: DataTypes.INTEGER,
-    userid: DataTypes.STRING,
-    articleId: DataTypes.INTEGER
+      id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    userid: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    articleId: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
   }, {
     sequelize,
     modelName: 'Scrap_article',

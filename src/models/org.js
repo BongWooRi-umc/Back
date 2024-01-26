@@ -14,12 +14,32 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Org.init({
-    id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    url: DataTypes.STRING,
-    tel: DataTypes.STRING,
-    location: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
+      id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    name: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    url: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    tel: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    location: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    createdAt: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     modifiedAt: DataTypes.DATE
   }, {
     sequelize,

@@ -14,12 +14,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Article.init({
-    id: DataTypes.INTEGER,
-    userid: DataTypes.STRING,
-    title: DataTypes.STRING,
+      id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      autoIncrement:true,
+    },
+    userid: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
+    title: {
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
     content: DataTypes.TEXT,
     likes: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
+    createdAt: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     modifiedAt: DataTypes.DATE
   }, {
     sequelize,

@@ -1,24 +1,30 @@
-class User{
-    //for create
-    constructor(id, name, phone, email, nickname,password){
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.createdAt = new Date();
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    //for getter from DB
-    constructor(id, name, phone, email, nickname, password, createdAt, modifiedAt, picture){
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-
-}
+  }
+  User.init({
+    id: DataTypes.STRING,
+    name: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    email: DataTypes.STRING,
+    nickname: DataTypes.STRING,
+    password: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    modifiedAt: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
+  return User;
+};

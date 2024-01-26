@@ -1,13 +1,25 @@
-class scrap_article{
-    //for create scrap
-    constructor(userId, articleId){
-        this.userId = userId;
-        this.articleId = articleId;
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Scrap_article extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    //for getter 
-    constructor(id, userId, articleId){
-        this.id = id;
-        this.userId = userId;
-        this.articleId = articleId;
-    }
-}
+  }
+  Scrap_article.init({
+    id: DataTypes.INTEGER,
+    userid: DataTypes.STRING,
+    articleId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'Scrap_article',
+  });
+  return Scrap_article;
+};

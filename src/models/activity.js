@@ -1,30 +1,34 @@
-class activity{
-    //for create activity           
-    constructor(orgId, title, recruBegin, recruEnd, recruNum,signedNum, content, actBegin, actEnd){
-        this.orgId = orgId;
-        this.title = title;
-        this.recruBegin = recruBegin;
-        this.recruEnd = recruEnd;
-        this.recruNum = recruNum;
-        this.signedNum = signedNum;
-        this.content = content;
-        this.actBegin = actBegin;
-        this.actEnd = actEnd;
-        this.createdAt = new Date();
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Activity extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    //for getter
-    constructor(id, orgId, title, recruBegin, recruEnd, recruNum,signedNum, content, actBegin, actEnd,createdAt, modifiedAt){
-        this.id = id;
-        this.orgId = orgId;
-        this.title = title;
-        this.recruBegin = recruBegin;
-        this.recruEnd = recruEnd;
-        this.recruNum = recruNum;
-        this.signedNum = signedNum;
-        this.content = content;
-        this.actBegin = actBegin;
-        this.actEnd = actEnd;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-}
+  }
+  Activity.init({
+    id: DataTypes.INTEGER,
+    orgId: DataTypes.INTEGER,
+    title: DataTypes.STRING,
+    recruBegin: DataTypes.DATE,
+    recruEnd: DataTypes.DATE,
+    recruNum: DataTypes.INTEGER,
+    signedNum: DataTypes.INTEGER,
+    content: DataTypes.TEXT,
+    actBegin: DataTypes.DATE,
+    actEnd: DataTypes.DATE,
+    createdAt: DataTypes.DATE,
+    modifiedAt: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'Activity',
+  });
+  return Activity;
+};

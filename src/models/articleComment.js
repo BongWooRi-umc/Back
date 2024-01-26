@@ -1,18 +1,28 @@
-class articleComment{
-    //for create comment
-    constructor(articleId, userId, content){
-        this.articleId = articleId;
-        this.userId = userId;
-        this.content = content;
-        this.createdAt = new Date();
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class ArticleComment extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    //for getter
-    constructor(commentId, articleId, userId, content, createdAt, modifiedAt){
-        this.commentId = commentId;
-        this.articleId = articleId;
-        this.userId = userId;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-}
+  }
+  ArticleComment.init({
+    id: DataTypes.INTEGER,
+    articleId: DataTypes.INTEGER,
+    userid: DataTypes.STRING,
+    content: DataTypes.TEXT,
+    createdAt: DataTypes.DATE,
+    modifiedAt: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'ArticleComment',
+  });
+  return ArticleComment;
+};

@@ -1,22 +1,30 @@
-class review{
-    //for create review
-    constructor(userId, activityId, title, content,star){
-        this.userId = userId;
-        this.activityId = activityId;
-        this.title = title;
-        this.content = content;
-        this.star = star;
-        this.createdAt = new Date();
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Review extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    //for getter
-    constructor(reviewId, userId, activityId, title, content, star, createdAt, modifiedAt){
-        this.review = reviewId;
-        this.userId = userId;
-        this.activityId = activityId;
-        this.title = title;
-        this.content = content;
-        this.star = star;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-}
+  }
+  Review.init({
+    id: DataTypes.INTEGER,
+    userid: DataTypes.STRING,
+    actId: DataTypes.INTEGER,
+    title: DataTypes.STRING,
+    content: DataTypes.TEXT,
+    score: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    modifiedAt: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'Review',
+  });
+  return Review;
+};

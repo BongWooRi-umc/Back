@@ -1,19 +1,29 @@
-class article{
-    //for create article
-    constructor(userId, title, content, likes){
-        this.userId = userId;
-        this.title = title;
-        this.content = content;
-        this.likes = likes;
-        this.createdAt = new Date();
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Article extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    //for getter from DB
-    constructor(id, userId, title, content, likes,createdAt){
-        this.id=  id;
-        this.userId = userId;
-        this.title = title;
-        this.content = content;
-        this.likes = likes;
-        this.createdAt = createdAt;
-    }
-}
+  }
+  Article.init({
+    id: DataTypes.INTEGER,
+    userid: DataTypes.STRING,
+    title: DataTypes.STRING,
+    content: DataTypes.TEXT,
+    likes: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    modifiedAt: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'Article',
+  });
+  return Article;
+};

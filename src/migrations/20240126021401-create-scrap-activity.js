@@ -9,13 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       userid: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       activityId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -1,4 +1,5 @@
 'use strict';
+const {ApplyStatus} = require('../enums/applyStatus');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,17 +10,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
-      userid: {
-        type: Sequelize.STRING
+      userId: {
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       activityId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      isFinished: {
-        type: Sequelize.BOOLEAN
+      applyStatus: {
+        allowNull:false,
+        type: Sequelize.ENUM(...Object.values(ApplyStatus)),
       },
       createdAt: {
         allowNull: false,

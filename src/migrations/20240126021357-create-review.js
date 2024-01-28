@@ -1,4 +1,5 @@
 'use strict';
+const { Score } = require('../enums/score');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,29 +10,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
-      userid: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.STRING(20)
       },
       actId: {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       content: {
         type: Sequelize.TEXT
       },
       score: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      modifiedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.ENUM(...Object.values(Score)),
       },
       createdAt: {
         allowNull: false,

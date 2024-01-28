@@ -17,27 +17,23 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Article.init({
-      id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
-    userid: {
-      type:DataTypes.INTEGER,
+    userId: {
+      type:DataTypes.STRING,
       allowNull:false,
     },
     title: {
       type:DataTypes.STRING,
       allowNull:false,
     },
-    content: DataTypes.TEXT,
+    content: {
+      type:DataTypes.TEXT,
+      allowNull:false,
+    },
     likes: DataTypes.INTEGER,
     createdAt: {
       type:DataTypes.DATE,
       allowNull:false,
     },
-    modifiedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Article',

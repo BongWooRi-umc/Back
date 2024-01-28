@@ -9,26 +9,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       name: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(64)
       },
       url: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(128)
       },
       tel: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(15)
       },
       location: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      modifiedAt: {
-        type: Sequelize.DATE
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       createdAt: {
         allowNull: false,

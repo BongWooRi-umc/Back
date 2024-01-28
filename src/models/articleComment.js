@@ -15,26 +15,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ArticleComment.init({
-    id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
     articleId: {
       type:DataTypes.INTEGER,
       allowNull:false,
     },
-    userid: {
+    userId: {
       type:DataTypes.INTEGER,
       allowNull:false,
     },
     content: DataTypes.TEXT,
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
-    },
-    modifiedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'ArticleComment',

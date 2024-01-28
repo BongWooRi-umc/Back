@@ -1,6 +1,10 @@
 'use strict';
+const { ActSubject } = require('../enums/actSubject');
+const { ActType } = require('../enums/actType');
+const { IsOnline } = require('../enums/isOnline');
+const { ConfirmType } = require('../enums/confirmType');
 const {
-  Model
+  Model, STRING
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Activity extends Model {
@@ -23,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       autoIncrement:true,
     },
-    orgId: DataTypes.INTEGER,
+    orgId: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
     title: {
       type:DataTypes.STRING,
       allowNull:false,
@@ -53,11 +60,30 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.DATE,
       allowNull:false,
     },
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
+    place_do: {
+      type:DataTypes.STRING,
     },
-    modifiedAt: DataTypes.DATE
+    place_si: {
+      type:DataTypes.STRING,
+    },
+    actSubject: {
+      type:DataTypes.ENUM(...Object.values(ActSubject)),
+    },
+    actType: {
+      type:DataTypes.ENUM(...Object.values(ActType)),
+    },
+    isOnline: {
+      type:DataTypes.ENUM(...Object.values(IsOnline)),
+    },
+    confirmType: {
+      type: DataTypes.ENUM(...Object.values(ConfirmType)),
+    },
+    actField: {
+      type: DataTypes.STRING,
+    },
+    actFieldDetail: {
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'Activity',

@@ -1,19 +1,22 @@
 'use strict';
+const { Days } = require('../enums/days');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('ActDays', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.STRING
+      actId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      day: {
+        allowNull: false,
+        type: Sequelize.ENUM(...Object.values(Days)),
       },
       createdAt: {
         allowNull: false,
@@ -26,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('ActDays');
   }
 };

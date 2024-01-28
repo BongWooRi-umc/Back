@@ -1,4 +1,5 @@
 'use strict';
+const { Score } = require('../enums/score');
 const {
   Model
 } = require('sequelize');
@@ -16,13 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Review.init({
-      id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
-    userid: {
+    userId: {
       type:DataTypes.STRING,
       allowNull:false,
     },
@@ -35,12 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
     },
     content: DataTypes.TEXT,
-    score: DataTypes.INTEGER,
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
-    },
-    modifiedAt: DataTypes.DATE
+    score: DataTypes.ENUM(...Object.values(Score)),
   }, {
     sequelize,
     modelName: 'Review',

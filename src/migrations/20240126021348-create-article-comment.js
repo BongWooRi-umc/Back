@@ -9,23 +9,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       articleId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      userid: {
-        type: Sequelize.STRING
+      userId: {
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       content: {
+        allowNull: false,
         type: Sequelize.TEXT
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      modifiedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

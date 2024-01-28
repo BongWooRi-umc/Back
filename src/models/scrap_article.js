@@ -16,14 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Scrap_article.init({
-      id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
-    userid: {
-      type:DataTypes.STRING,
+    userId: {
+      type:DataTypes.STRING(20),
       allowNull:false,
     },
     articleId: {

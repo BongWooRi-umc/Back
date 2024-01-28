@@ -19,12 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
     name: {
       type:DataTypes.STRING,
       allowNull:false,
@@ -45,11 +39,6 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false,
     },
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
-    },
-    modifiedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'User',

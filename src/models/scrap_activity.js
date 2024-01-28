@@ -15,12 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Scrap_activity.init({
-      id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
     userid: {
       type:DataTypes.STRING,
       allowNull:false,

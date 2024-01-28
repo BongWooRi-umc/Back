@@ -1,4 +1,8 @@
 'use strict';
+const { ActSubject } = require('../enums/actSubject');
+const { ActType } = require('../enums/actType');
+const { IsOnline } = require('../enums/isOnline');
+const { ConfirmType } = require('../enums/confirmType');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,28 +13,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       orgId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(128)
       },
       recruBegin: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       recruEnd: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       recruNum: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       signedNum: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       content: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       actBegin: {
@@ -38,12 +46,30 @@ module.exports = {
       },
       actEnd: {
         type: Sequelize.DATE
+      },    
+      place_do: {
+        type:Sequelize.STRING(10)
       },
-      createdAt: {
-        type: Sequelize.DATE
+      place_si: {
+        type:Sequelize.STRING(10)
       },
-      modifiedAt: {
-        type: Sequelize.DATE
+      actSubject: {
+        type:Sequelize.ENUM(...Object.values(ActSubject)),
+      },
+      actType: {
+        type:Sequelize.ENUM(...Object.values(ActType)),
+      },
+      isOnline: {
+        type:Sequelize.ENUM(...Object.values(IsOnline)),
+      },
+      confirmType: {
+        type: Sequelize.ENUM(...Object.values(ConfirmType)),
+      },
+      actField: {
+        type: Sequelize.STRING(6)
+      },
+      actFieldDetail: {
+        type: Sequelize.STRING(6)
       },
       createdAt: {
         allowNull: false,

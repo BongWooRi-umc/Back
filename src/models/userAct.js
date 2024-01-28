@@ -1,4 +1,5 @@
 'use strict';
+const {ApplyStatus} = require('../enums/applyStatus');
 const {
   Model
 } = require('sequelize');
@@ -16,12 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   UserAct.init({
-      id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
     userid: {
       type:DataTypes.STRING,
       allowNull:false,
@@ -30,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull:false,
     },
-    isFinished: DataTypes.BOOLEAN
+    applyStatus: {
+      type: DataTypes.ENUM(...Object.values(ApplyStatus)),
+    },
   }, {
     sequelize,
     modelName: 'UserAct',

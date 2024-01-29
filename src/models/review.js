@@ -11,27 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Review.belongsTo(models.User, { foreignKey: "userid", targetKey: "id" });
+      Review.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
       Review.belongsTo(models.Activity, { foreignKey: "actId", targetKey: "id" });
 
     }
   }
   Review.init({
-    userId: {
-      type:DataTypes.STRING,
-      allowNull:false,
-    },
-    actId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
     title: {
       type:DataTypes.STRING,
       allowNull:false,
     },
     content: DataTypes.TEXT,
-    score: DataTypes.ENUM(...Object.values(Score)),
+    score: DataTypes.ENUM(...Object.values(Score)), 
   }, {
+    timestamps : true,
     sequelize,
     modelName: 'Review',
   });

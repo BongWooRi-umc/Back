@@ -11,22 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserAct.belongsTo(models.Activity, { foreignKey: "actId", targetKey: "id" });
-      UserAct.belongsTo(models.User, { foreignKey: "userid", targetKey: "id" });
-
+      
     }
   }
   UserAct.init({
-    userid: {
-      type:DataTypes.STRING,
-      allowNull:false,
-    },
-    activityId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
     applyStatus: {
       type: DataTypes.ENUM(...Object.values(ApplyStatus)),
+    },
+    actTime : {
+        type : DataTypes.DATE,
+        allowNull : false,
     },
   }, {
     sequelize,

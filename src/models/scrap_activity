@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Scrap_activity.belongsTo(models.User, { foreignKey: "userid", targetKey: "id" });
+      Scrap_activity.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
       Scrap_activity.belongsTo(models.Activity, { foreignKey: "actId", targetKey: "id" });
     }
   }
   Scrap_activity.init({
-    userid: {
+    userId: {
       type:DataTypes.STRING,
       allowNull:false,
     },
-    activityId: DataTypes.INTEGER
+    actId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Scrap_activity',

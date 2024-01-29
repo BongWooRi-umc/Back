@@ -30,12 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false,
     },
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
-    },
-    modifiedAt: DataTypes.DATE
   }, {
+    timestamps : true,
     sequelize,
     modelName: 'Org',
   });

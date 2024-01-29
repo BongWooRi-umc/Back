@@ -11,11 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      ActDay.belongsTo(models.Activity, { foreignKey:"actId" , targetKey:"id"});
     }
   }
   ActDay.init({
-    actId: DataTypes.INTEGER,
     day: {
       type: DataTypes.ENUM(...Object.values(Days)),
     }

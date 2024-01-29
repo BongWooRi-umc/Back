@@ -10,11 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.Review, { foreignKey: "userid", sourceKey: "id" });
-      User.hasMany(models.UserAct, { foreignKey: "userid", sourceKey: "id" });
-      User.hasMany(models.Scrap_activity, { foreignKey: "userid", sourceKey: "id" });
-      User.hasMany(models.Scrap_article, { foreignKey: "userid", sourceKey: "id" });
-      User.hasMany(models.Article, { foreignKey: "userid", sourceKey: "id" });
+      User.hasMany(models.Review, { foreignKey: "userId", sourceKey: "id" });
+      User.belongsToMany(models.Activity, { through : 'userAct'});
+      User.hasMany(models.Scrap_activity, { foreignKey: "userId", sourceKey: "id" });
+      User.hasMany(models.Scrap_article, { foreignKey: "userId", sourceKey: "id" });
+      User.hasMany(models.like, { foreignKey: "userId", sourceKey: "id" });
+      User.hasMany(models.Article, { foreignKey: "userId", sourceKey: "id" });
 
     }
   }
@@ -39,7 +40,11 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false,
     },
+    portrait : {
+      type : DataTypes.STRING,
+    }
   }, {
+    timestamps : true,
     sequelize,
     modelName: 'User',
   });

@@ -16,8 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Activity.belongsTo(models.Org, { foreignKey: "orgId", targetKey: "id" });
       Activity.hasMany(models.review, { foreignKey: "actId", sourceKey: "id" });
-      Activity.hasMany(models.UserAct, { foreignKey: "acttivityId", sourceKey: "id" });
-      Activity.hasMany(models.Scrap_activity, { foreignKey: "activityId", sourceKey: "id" });
+      Activity.belongsToMany(models.User, { through : 'userAct' });
+      Activity.hasMany(models.Scrap_activity, { foreignKey: "actId", sourceKey: "id" });
+      Activity.hasMany(models.ActDay, { foreignKey: "actId", sourceKey: "id" });
     }
   }
   Activity.init({
@@ -26,10 +27,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey:true,
       allowNull:false,
       autoIncrement:true,
-    },
-    orgId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
     },
     title: {
       type:DataTypes.STRING,
@@ -85,6 +82,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {
+    timestamps : true,
     sequelize,
     modelName: 'Activity',
   });

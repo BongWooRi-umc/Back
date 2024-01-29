@@ -11,19 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Scrap_article.belongsTo(models.Article, { foreignKey: "articleId", targetKey: "id" });
-      Scrap_article.belongsTo(models.User, { foreignKey: "userid", targetKey: "id" });
+      Scrap_article.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
 
     }
   }
   Scrap_article.init({
-    userId: {
-      type:DataTypes.STRING(20),
-      allowNull:false,
-    },
-    articleId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
   }, {
     sequelize,
     modelName: 'Scrap_article',

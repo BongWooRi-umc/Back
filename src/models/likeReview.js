@@ -3,28 +3,24 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class UserAct extends Model {
+  class LikeReview extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserAct.belongsTo(models.Activity, { foreignKey: "actId", targetKey: "id" });
-      UserAct.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
-      UserAct.belongsTo(models.Review, { foreignKey: "reviewId", targetKey: "id" });
-
+      models.LikeReview.belongsTo(models.User, { ForeignKey: "userId", SourceKey: "id" });
+      models.LikeReview.belongsTo(models.Review, {ForeignKey: "reviewId", SourceKey: "id" });
+      // define association here
     }
   }
-  UserAct.init({
-    actDate: {
-      type: DataTypes.DATE,
-    },
+  LikeReview.init({
   }, {
     sequelize,
     timestamps:false,
     underscored:false,
-    modelName: 'UserAct',
+    modelName: 'LikeReview',
   });
-  return UserAct;
+  return LikeReview;
 };

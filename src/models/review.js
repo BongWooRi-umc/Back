@@ -11,28 +11,43 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Review.belongsTo(models.User, { foreignKey: "userid", targetKey: "id" });
+      Review.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
       Review.belongsTo(models.Activity, { foreignKey: "actId", targetKey: "id" });
+      Review.hasMany(models.LikeReview, { foreignKey: "reviewId", sourceKey: "id" });
+      Review.hasMany(models.ScrapCommu, { foreignKey: "reviewId", sourceKey: "id" });
+      Review.hasOne(models.UserAct, { foreignKey: "reviewId", sourceKey: "id" });
 
     }
   }
   Review.init({
-    userId: {
-      type:DataTypes.STRING,
-      allowNull:false,
-    },
-    actId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
     title: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(128),
       allowNull:false,
     },
-    content: DataTypes.TEXT,
-    score: DataTypes.ENUM(...Object.values(Score)),
+    content: {
+      type:DataTypes.TEXT,
+      allowNull:false,
+    },
+    score: {
+      type:DataTypes.ENUM(...Object.values(Score)),
+    },
+    likes:{
+      type:DataTypes.INTEGER,
+      defaultValue:0,
+    },
+    viewCount:{
+      type:DataTypes.INTEGER,
+      defaultValue:0,
+    },
+    comments: {
+      type:DataTypes.INTEGER,
+      defaultValue:0,
+    },
   }, {
     sequelize,
+    underscored:false,
+    charset:'utf8',
+    collate:'utf8_general_ci',
     modelName: 'Review',
   });
   return Review;

@@ -10,32 +10,34 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Article.belongsTo(models.User, { foreignKey: "userid", targetKey: "id" });
-      Article.hasMany(models.Scrap_article, { foreignKey: "articleId", sourceKey: "id" });
-      Article.hasMany(models.ArticleComment, { foreignKey: "articleId", sourceKey: "id" });
+      models.Article.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id' });
+      models.Article.hasMany(models.ScrapCommu, { foreignKey: 'articleId', sourceKey: 'id' });
+      models.Article.hasMany(models.ArticleComment, { foreignKey: 'articleId', sourceKey: 'id' });
+      models. Article.hasMany(models.LikeArticle, { foreignKey: 'articleId', sourceKey: 'id' });
 
     }
   }
   Article.init({
-    userId: {
-      type:DataTypes.STRING,
-      allowNull:false,
-    },
     title: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(128),
       allowNull:false,
     },
     content: {
       type:DataTypes.TEXT,
       allowNull:false,
     },
-    likes: DataTypes.INTEGER,
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
+    likes: {
+      type:DataTypes.INTEGER,
+      defaultValue:0,
+    },
+    viewCount: {
+      type:DataTypes.INTEGER,
     },
   }, {
     sequelize,
+    underscored:false,
+    charset:'utf8',
+    collate:'utf8_general_ci',
     modelName: 'Article',
   });
   return Article;

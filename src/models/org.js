@@ -15,28 +15,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   Org.init({
     name: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(64),
       allowNull:false,
     },
     url: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(256),
       allowNull:false,
     },
     tel: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(15),
       allowNull:false,
     },
-    location: {
-      type:DataTypes.STRING,
+    address: {
+      type:DataTypes.STRING(50),
       allowNull:false,
     },
-    createdAt: {
-      type:DataTypes.DATE,
-      allowNull:false,
-    },
-    modifiedAt: DataTypes.DATE
   }, {
     sequelize,
+    underscored:false,
+    charset:'utf8',
+    collate:'utf8_general_ci',
     modelName: 'Org',
   });
   return Org;

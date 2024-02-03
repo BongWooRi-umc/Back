@@ -15,24 +15,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Activity.belongsTo(models.Org, { foreignKey: "orgId", targetKey: "id" });
-      Activity.hasMany(models.review, { foreignKey: "actId", sourceKey: "id" });
-      Activity.hasMany(models.UserAct, { foreignKey: "acttivityId", sourceKey: "id" });
-      Activity.hasMany(models.Scrap_activity, { foreignKey: "activityId", sourceKey: "id" });
+      Activity.hasMany(models.Review, { foreignKey: "actId", sourceKey: "id" });
+      Activity.hasMany(models.UserAct, { foreignKey: "actId", sourceKey: "id" });
+      Activity.hasMany(models.ScrapActivity, { foreignKey: "actId", sourceKey: "id" });
+      Activity.hasMany(models.UserApply, { foreignKey: "actId", sourceKey: "id" });
+
     }
   }
   Activity.init({
-    id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      allowNull:false,
-      autoIncrement:true,
-    },
-    orgId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
     title: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(128),
       allowNull:false,
     },
     recruBegin: {
@@ -40,6 +32,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
     },
     recruEnd: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
+    actBegin: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
+    actEnd: {
       type:DataTypes.DATE,
       allowNull:false,
     },
@@ -51,20 +51,15 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull:false,
     },
-    content: DataTypes.TEXT,
-    actBegin: {
-      type:DataTypes.DATE,
-      allowNull:false,
-    },
-    actEnd: {
-      type:DataTypes.DATE,
+    content: {
+      type:DataTypes.TEXT,
       allowNull:false,
     },
     place_do: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(10),
     },
     place_si: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(10),
     },
     actSubject: {
       type:DataTypes.ENUM(...Object.values(ActSubject)),
@@ -79,13 +74,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM(...Object.values(ConfirmType)),
     },
     actField: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(6),
     },
     actFieldDetail: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(6),
+    },
+    isRecru: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false,
+    },
+    actDay: {
+      type: DataTypes.STRING(7),
+      defaultValue:"0000000", //일요일부터 시작, 0이면 활동X, 1이면 활동
     },
   }, {
     sequelize,
+    underscored:false,
     modelName: 'Activity',
   });
   return Activity;

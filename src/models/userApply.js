@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserApply.belongsTo(models.Activity, { foreignKey: "actId", targetKey: "id" });
-      UserApply.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
+      UserApply.belongsTo(models.Activity, { foreignKey: "ActId", targetKey: "id" });
+      UserApply.belongsTo(models.User, { foreignKey: "UserId", targetKey: "id" });
 
     }
   }

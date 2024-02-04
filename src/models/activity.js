@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Activity.belongsTo(models.Org, { foreignKey: "orgId", targetKey: "id" });
-      Activity.hasMany(models.Review, { foreignKey: "actId", sourceKey: "id" });
-      Activity.hasMany(models.UserAct, { foreignKey: "actId", sourceKey: "id" });
-      Activity.hasMany(models.ScrapActivity, { foreignKey: "actId", sourceKey: "id" });
-      Activity.hasMany(models.UserApply, { foreignKey: "actId", sourceKey: "id" });
+      Activity.belongsTo(models.Org, { foreignKey: "OrgId", targetKey: "id" });
+      Activity.hasMany(models.Review, { foreignKey: "ActId", sourceKey: "id" });
+      Activity.hasMany(models.UserAct, { foreignKey: "ActId", sourceKey: "id" });
+      Activity.hasMany(models.ScrapActivity, { foreignKey: "ActId", sourceKey: "id" });
+      Activity.hasMany(models.UserApply, { foreignKey: "ActId", sourceKey: "id" });
 
     }
   }

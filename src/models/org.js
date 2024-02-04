@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Org.hasMany(models.Activity, { foreignKey: "orgId", sourceKey: "id" });
+      Org.hasMany(models.Activity, { foreignKey: "OrgId", sourceKey: "id" });
     }
   }
   Org.init({

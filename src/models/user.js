@@ -10,23 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.Article, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.ArticleComment, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.ScrapCommu, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.LikeArticle, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.LikeReview, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.Review, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.UserAct, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.ScrapActivity, { foreignKey: "userId", sourceKey: "id" });
-      User.hasMany(models.UserApply, { foreignKey: "userId", sourceKey: "id" });
+      User.hasMany(models.Article, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.ArticleComment, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.ScrapCommu, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.LikeArticle, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.LikeReview, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.Review, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.UserAct, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.ScrapActivity, { foreignKey: "UserId", sourceKey: "id" });
+      User.hasMany(models.UserApply, { foreignKey: "UserId", sourceKey: "id" });
 
     }
   }
   User.init({
-    logInId: {
-      type:DataTypes.STRING(20),
-      allowNull:false,
-    },
     name: {
       type:DataTypes.STRING(10),
       allowNull:false,

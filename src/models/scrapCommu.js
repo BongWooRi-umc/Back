@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      ScrapCommu.belongsTo(models.Article, { foreignKey: "articleId", targetKey: "id" });
-      ScrapCommu.belongsTo(models.User, { foreignKey: "userId", targetKey: "id" });
-      ScrapCommu.belongsTo(models.Review, { foreignKey: "articleId", targetKey: "id" });
+      ScrapCommu.belongsTo(models.User, { foreignKey: "UserId", targetKey: "id" });
+      ScrapCommu.belongsTo(models.Article, { foreignKey: "ArticleId", targetKey: "id" });
+      ScrapCommu.belongsTo(models.Review, { foreignKey: "ReviewId", targetKey: "id" });
 
     }
   }
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       defaultValue:0,
     },
-    createdTime:{
+    createdTime:{ //원글 작성일자
       type:DataTypes.DATE,
     },
   }, {

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.LikeArticle.belongsTo(models.User, { ForeignKey: 'userId', targetKey: 'id' });
-      models.LikeArticle.belongsTo(models.Article, { ForeignKey: 'articleId', targetKey: 'id' });
+      models.LikeArticle.belongsTo(models.User, { ForeignKey: 'UserId', targetKey: 'id' });
+      models.LikeArticle.belongsTo(models.Article, { ForeignKey: 'ArticleId', targetKey: 'id' });
       // define association here
     }
   }
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     timestamps:false,
-    underscored:false,
+    // underscored:false,
     modelName: 'LikeArticle',
   });
   return LikeArticle;

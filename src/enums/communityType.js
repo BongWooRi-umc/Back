@@ -1,4 +1,4 @@
 module.exports.ScrapType = Object.freeze({
-    REVIEW: 'review',
-    ARTICLE: 'article'
+    ARTICLE: 'article',
+    REVIEW: 'review'
 });

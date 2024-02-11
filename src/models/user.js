@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
+    timestamps: true,
     underscored:false,
     charset:'utf8',
     collate:'utf8_general_ci',

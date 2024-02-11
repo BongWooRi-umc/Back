@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const dotenv = require('dotenv');
-const passport = ('passport');
+const passport = require('passport');
 
 dotenv.config();
 const {register1Router} = require('./routes/register1.route.js');

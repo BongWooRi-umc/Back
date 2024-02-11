@@ -19,7 +19,7 @@ exports.register1 = async(req,res,next)=>{
 exports.register2 = async(req,res,next)=>{
     const { name, email,nickname, phone, password, } = req.body;
     try{
-        const exUser =  await User.findOne({ where: {email});
+        const exUser =  await User.findOne({ where: {email}});
         if(exUser){
             return res.redirect('/register2?error=exist');
         }

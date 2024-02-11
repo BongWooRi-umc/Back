@@ -1,7 +1,7 @@
 const express = require('express');
-
-const UserApply = require('../models/UserApply');
-const Activity = require('../models/Activity');
+const sequelize = require('sequelize');
+const {UserApply} = require('../models');
+const {Activity} = require('../models');
 
 const endRouter = express.Router();
 
@@ -11,28 +11,36 @@ endRouter.get('/', async (req,res) => {
 
   // 사용자 ID가 존재하는 경우에만 데이터 조회
   if (UserId) {
-    const Data = await Activity.findAll({
-        include: [
-          {
-            model: UserApply,
-            attributes: [],
-            where: {
-              actId: sequelize.col('activity.id'),
-              applyStatus: 2
-            },
-            required: true // INNER JOIN과 동일한 효과
-          }
-        ]
-      });
+    const Data = await UserApply.findAll({
+      attributes: [
+      ],
+      include: {
+        model: Activity,
+        attributes: [
+          'id',
+          'title',
+          'content',
+          'isRecru',
+          'actType',
+          'confirmType',
+        ],
+      },
+      where: {
+        applyStatus: 'end',
+      },
+      raw: true,
+    });
 
-      if (Data.length === 0) {
-        return res.status(400).json({
-          code: 400,
-          message: 'No result'
-        });
-      }
+    const processedData = Data.map(item => ({
+      actid: item['Activity.id'],
+      title: item['Activity.title'],
+      content: item['Activity.content'],
+      isRecru: item['Activity.isRecru'],
+      actType: item['Activity.actType'],
+      confirmType: item['Activity.confirmType'],
+    }));
 
-    res.json(Data); // 데이터 전달
+    res.json(processedData); // 데이터 전달
     } else {
       // 로그인 인증 실패
       if (error.name === 'UnauthorizedError') { 

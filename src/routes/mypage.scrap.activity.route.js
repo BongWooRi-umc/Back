@@ -1,13 +1,13 @@
 const express = require('express');
-
-const ScrapActivity = require('../models/ScrapActivity');
-const Activity = require('../models/Activity');
-const Org = require('../models/Org');
+const sequelize = require('sequelize');
+const {ScrapActivity} = require('../models');
+const {Activity} = require('../models');
+const {Org} = require('../models');
 const { Op } = require('sequelize');
 
 const activityRouter = express.Router();
 
-scrapRouter,get('/', async(req,res)=> {
+activityRouter.get('/', async(req,res)=> {
   try {
     const UserId = req.user.id; // 예시: 사용자 ID는 로그인한 사용자의 ID로 가정
 
@@ -19,14 +19,13 @@ scrapRouter,get('/', async(req,res)=> {
           {
             model: Activity,
             attributes: [
-              'id', 'title', 'content', 'scrap', 'comments', 'createdDate',
-              [sequelize.literal('"org"."name"'), 'orgName'] // org.name을 orgName으로 별칭
+              'id','title', 'isRecru','actType','confirmType',
               // 기타 필요한 activity 열들을 추가
             ],
             include: [
               {
                 model: Org,
-                attributes: [], // 필요한 Org 열이 있으면 추가
+                attributes: ['name'], // 필요한 Org 열이 있으면 추가
                 required: false
               }
             ]
@@ -44,7 +43,16 @@ scrapRouter,get('/', async(req,res)=> {
         });
       }
     
-    res.json(Data); // 데이터 전달
+      const transformedResult = Data.map(item => ({
+        actId: item.Activity.id,
+        title: item.Activity.title,
+        orgName: item.Activity.Org.name,
+        isRecru: item.Activity.isRecru,
+        actType: item.Activity.actType,
+        confirmType: item.Activity.confirmType,
+      }));
+      
+      res.json(transformedResult);
     } else {
       // 로그인 인증 실패
       if (error.name === 'UnauthorizedError') { 
@@ -54,6 +62,7 @@ scrapRouter,get('/', async(req,res)=> {
         });
       }};
   } catch (error) {
+    console.log(error);
     res.status(500).json({
     code: 500,
     message: 'Internal Server Error'

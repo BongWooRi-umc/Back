@@ -1,8 +1,8 @@
 const express = require('express');
-
+const sequelize = require('sequelize');
 const articleRouter = express.Router();
 
-const Article = require('../models/Article');
+const {Article} = require('../models');
 
 articleRouter.get('/', async (req,res)=> {
     try {
@@ -12,20 +12,26 @@ articleRouter.get('/', async (req,res)=> {
     // 사용자 ID가 존재하는 경우에만 데이터 조회
     if (UserId) {
         const result = await Article.findAll({
-            attributes: ['title', 'content'],
+            attributes: ['title', 'content','createdAt'],
             where: {
               userId: UserId
             },
             order: [['createdAt', 'DESC']]
           });
         
-        if (Data.length === 0) {
+        if (result.length === 0) {
             return res.status(400).json({
               code: 400,
               message: 'No result'
             });
           }
-        res.send(result);
+
+          const formattedResult = result.map(item => ({
+            title: item.title,
+            content: item.content,
+            createdDate: item.createdAt, // 'createdAt'을 'createdDate'로 변경
+          }));
+        res.send(formattedResult);
       } else {
         // 로그인 인증 실패
         if (error.name === 'UnauthorizedError') { 
@@ -35,6 +41,7 @@ articleRouter.get('/', async (req,res)=> {
             });
           }};
     } catch (error) {
+        console.log(error);
         res.status(500).json({
           code: 500,
           message: 'Internal Server Error'
@@ -42,12 +49,14 @@ articleRouter.get('/', async (req,res)=> {
     }
 });
 
-articleRouter.get('/{:id}', async (req,res)=> {
+articleRouter.get('/:id', async (req,res)=> {
     try {
         // 세션에서 사용자 ID 가져오기
     const UserId = req.user ? req.user.id : null;
         // 게시글 ID 가져오기
-    const ArtId = req.params.id;
+    const ArtId = req.params ? req.params.id : null;
+
+    console.log(UserId , ArtId);
 
     if (!ArtId) {
         return res.status(400).json({
@@ -57,24 +66,24 @@ articleRouter.get('/{:id}', async (req,res)=> {
       }
 
     if (UserId) {
-        const result = await Review.findOne({
-            attributes: ['title', 'createdAt', 'content', 'score'],
+        const result = await Article.findOne({
+            attributes: ['title', 'createdAt', 'content', 'userId','id'],
             where: {
               userId: UserId,
-              id: ReviewId
+              id: ArtId
             }
           });
+
+          res.send(result);
     } else { 
         if (error.name === 'UnauthorizedError') {
         return res.status(400).json({
           code: 400,
           message: 'Unauthorized access.'
         });
-    }
-    }
-    res.send(result);
-
+    }}
     } catch (error) {
+        console.log(error);
     res.status(500).json({
       code: 500,
       message: 'Internal Server Error'
@@ -82,7 +91,7 @@ articleRouter.get('/{:id}', async (req,res)=> {
 }
 });
 
-articleRouter.patch('/{:id}', async (req,res)=> {
+articleRouter.patch('/:id', async (req,res)=> {
     try {
         // 세션에서 사용자 ID 가져오기
     const UserId = req.user ? req.user.id : null;
@@ -118,7 +127,7 @@ articleRouter.patch('/{:id}', async (req,res)=> {
 }
 });
 
-articleRouter.delete('/{:id}', async (req,res)=> {
+articleRouter.delete('/:id', async (req,res)=> {
     try {
         // 세션에서 사용자 ID 가져오기
     const UserId = req.user ? req.user.id : null;

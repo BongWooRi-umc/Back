@@ -1,8 +1,8 @@
 const express = require('express');
-
+const sequelize = require('sequelize');
 const nicknameRouter = express.Router();
 
-const User = require('../models/User');
+const {User} = require('../models');
 
 nicknameRouter.patch('/', async(req,res)=> {
     try {

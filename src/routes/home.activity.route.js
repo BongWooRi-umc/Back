@@ -7,6 +7,7 @@ const activityRouter = express.Router();
 
 activityRouter.use('/org',orgRouter);
 activityRouter.use('/review',reviewRouter);
+activityRouter.get('/:actId',);
 console.log('home activity');
 
 module.exports = {activityRouter};

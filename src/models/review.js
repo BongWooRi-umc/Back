@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Review.belongsTo(models.Activity, { foreignKey: "ActId", targetKey: "id" });
       Review.hasMany(models.LikeReview, { foreignKey: "ReviewId", sourceKey: "id" });
       Review.hasMany(models.ScrapCommu, { foreignKey: "ReviewId", sourceKey: "id" });
+      Review.hasMany(models.ReviewComment, { foreignKey: "ReviewId", sourceKey: "id" });
       Review.hasOne(models.UserAct, { foreignKey: "ReviewId", sourceKey: "id" });
       Review.hasMany(models.ReviewComment, { foreignKey: "ReviewId", sourceKey: "id" });
       

@@ -17,5 +17,6 @@ exports.search = async(req,res,)=>{
     })
 };
 
-// exports.activity = async(req,res,next)=>{
-//     res.send(()=>{
+exports.activity = async(req,res,next)=>{
+    res.send(()=>{
+        act = 

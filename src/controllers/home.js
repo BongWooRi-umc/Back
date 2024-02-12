@@ -1,6 +1,6 @@
 const express = require('express');
-const response = require('../config/response');
-const status = require('../config/response.status');
+const {response} = require('../config/response');
+const {status} = require('../config/response.status');
 const orderByDate = require('../services/ListActivity');
 
 exports.home = async(req,res,)=>{
@@ -17,5 +17,6 @@ exports.search = async(req,res,)=>{
     })
 };
 
-// exports.activity = async(req,res,next)=>{
-//     res.send(()=>{
+exports.activity = async(req,res,next)=>{
+    res.send(()=>{
+        act = 

@@ -7,6 +7,15 @@ const response = ({code,message}, result) => {
     }
 };
 
+const response_islogin = ({code,message},isLogin, result) => {
+    return {
+        code: code,
+        message: message,
+        isLogin: isLogin,
+        result: result
+    }
+};
+
 const errResponse = ({isSuccess, code, message}) =>{
     return {
         isSuccess: isSuccess,
@@ -15,4 +24,4 @@ const errResponse = ({isSuccess, code, message}) =>{
     }
 };
 
-module.exports = { response, errResponse };
+module.exports = { response, errResponse,response_islogin };

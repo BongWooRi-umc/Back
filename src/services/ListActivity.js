@@ -1,19 +1,19 @@
-const {Article} = require('../models');
+const {Activity} = require('../models');
 
 const paging = 9;
 
-exports.orderByDate = ()=>{
+exports.orderByDate = async()=>{
     try{
-        list = Article.findAll({
+        list = await Activity.findAll({
             attribute: ['ActId','title','orgName','isRecur','actType','confirmType'],
             order: [['createdAt','DESC']],
             limit:paging,
         });
         if (!list) {
-            return {'isSuccess':false,result:'No result'};
+            return {'isSuccess':false,'result':'No result'};
         }
         else {
-            return {'isSuccess':true,result:list};
+            return {'isSuccess':true,'result':list};
         }
     }catch (error) {
         console.log(error);

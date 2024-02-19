@@ -2,7 +2,7 @@ const {Org} = require('../models');
 
 exports.orgDetail = async(orgId)=>{
     try{
-        org = Org.getOne({
+        org = await Org.findOne({
             where: {
                 id: orgId,
             },

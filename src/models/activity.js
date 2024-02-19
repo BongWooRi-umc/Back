@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Activity.belongsTo(models.Org, { foreignKey: "OrgId", targetKey: "id" });
       Activity.hasMany(models.Review, { foreignKey: "ActId", sourceKey: "id" });
-      Activity.hasMany(models.Review, { foreignKey: "ActTitle", sourceKey: "title" });
       Activity.hasMany(models.UserAct, { foreignKey: "ActId", sourceKey: "id" });
       Activity.hasMany(models.ScrapActivity, { foreignKey: "ActId", sourceKey: "id" });
       Activity.hasMany(models.UserApply, { foreignKey: "ActId", sourceKey: "id" });

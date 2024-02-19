@@ -12,6 +12,7 @@ const {authRouter} = require('./routes/auth.route.js');
 const {homeRouter} = require('./routes/home.route.js');
 const {communityRouter} = require('./routes/community.route.js');
 const {mypageRouter} = require('./routes/mypage.route.js');
+const {insertDataRouter} = require('./insertData/insertData.route.js');
 
 const {sequelize} = require('./models');
 const passportConfig = require('./passport');
@@ -41,22 +42,13 @@ sequelize.sync({force: false})
         console.error(err);
     });
 
-<<<<<<< HEAD
-=======
-// 테스트 위한 미들웨어 추가
-//app.use((req, res, next) => {
- //   // 테스트를 위해 UserId를 고정 값으로 설정 (예시: 1)
-  //  req.user = { id: 1 };
- //   next();
-//});
->>>>>>> develop-mypage
-
 app.use('/register1',register1Router);
 app.use('/register2',register2Router);
 app.use('/auth',authRouter);
 app.use('/home',homeRouter);
 app.use('/community',communityRouter);
 app.use('/mypage',mypageRouter);
+app.use('/insertData',insertDataRouter);
 console.log('router ready');
 
 app.use((req,res,next)=>{

@@ -5,6 +5,7 @@ const {orderByDate} = require('../services/ListActivity');
 const {getDetail} = require('../services/activityDetail');
 const {isScrapAct} = require('../services/isScrap');
 const { orgDetail } = require('../services/organization');
+const {getReviews} = require('../services/review');
 
 
 exports.home = async(req,res,)=>{
@@ -34,7 +35,22 @@ exports.org = async(req,res,)=>{
     if(req.user)
         org.isScrap = await isScrapAct(req.user.id,req.params.actId);
     if(org.isSuccess)
-        res.send(response(status.NORESULT,act.result));
+        res.send(response(status.SUCCESS,org.result));
     else
-        res.send(response(status.NORESULT,act.result));
+        res.send(response(status.NORESULT,org.result));
 };
+
+exports.actReviews = async(req,res,)=>{
+    if(req.user){
+        reviews = await getReviews(req.params.actId,req.user.id);
+    }
+    else{
+        reviews = await getReviews(req.params.actId);
+    }
+
+    if(reviews.isSuccess)
+        res.send(response(status.SUCCESS,reivews.result));
+    else
+        res.send(reesponse(status.NORESULT,reviews.result));
+};
+    

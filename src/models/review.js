@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Review.belongsTo(models.User, { foreignKey: "UserId", targetKey: "id" });
       Review.belongsTo(models.Activity, { foreignKey: "ActId", targetKey: "id" });
-      Review.belongsTo(models.Activity, { foreignKey: "ActTitle", targetKey: "title" });
       Review.hasMany(models.LikeReview, { foreignKey: "ReviewId", sourceKey: "id" });
       Review.hasMany(models.ScrapCommu, { foreignKey: "ReviewId", sourceKey: "id" });
       Review.hasMany(models.ReviewComment, { foreignKey: "ReviewId", sourceKey: "id" });
@@ -23,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Review.init({
+    actTitle: {
+      type:DataTypes.STRING(128),
+      allowNull:false,
+    },
     content: {
       type:DataTypes.TEXT,
       allowNull:false,

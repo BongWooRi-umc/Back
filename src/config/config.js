@@ -1,4 +1,26 @@
+require('dotenv').config();
 
-const ReviewPaging = 9;
-
-module.exports = {ReviewPaging};
+module.exports = {
+    development: {
+        username: 'root',
+        password: process.env.SEQUELIZE_PASSWORD,
+        database: process.env.SEQUELIZE_DB,
+        hose: '127.0.0.1',
+        dialect: 'mysql',
+    },
+    test: {
+        username: 'root',
+        password: process.env.SEQUELIZE_PASSWORD,
+        database: process.env.SEQUELIZE_DB,
+        hose: '127.0.0.1',
+        dialect: 'mysql',
+    },
+    production:{
+        username: 'root',
+        password: process.env.SEQUELIZE_PASSWORD,
+        database: process.env.SEQUELIZE_DB,
+        hose: '127.0.0.1',
+        dialect: 'mysql',
+        logging: false,
+    },
+};

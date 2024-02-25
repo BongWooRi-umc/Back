@@ -1,5 +1,5 @@
 const {Review} = require('../models');
-const {ReviewPaging:paging} = require('../config/config');
+const {ReviewPaging:paging} = require('../config/variable');
 
 exports.activityReviews = async(actId)=>{
     try{

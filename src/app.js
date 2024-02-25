@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
 const dotenv = require('dotenv');
 const passport = require('passport');
 
@@ -21,15 +23,26 @@ const app = express();
 app.set('port', process.env.PORT||3000);
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use(session({
+app.use(cookieParser(process.env.COOKIE_SECRET));
+// app.use(session({
+//     resave: false,
+//     saveUninitialized: false,
+//     secret: process.env.COOKIE_SECRET,
+//     cookie: {
+//         httpOnly: true,
+//         secure: false,
+//     },
+// }));
+const sessionOption = {
     resave: false,
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
-    cookie: {
+    cookie:{
         httpOnly: true,
         secure: false,
     },
-}));
+};
+app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -41,6 +54,13 @@ sequelize.sync({force: false})
     .catch((err)=>{
         console.error(err);
     });
+
+if (process.env.NODE_ENV === 'production'){
+    app.use(morgan('combined'));
+}else{
+    app.use(morgan('dev'));
+}
+
 
 app.use('/register1',register1Router);
 app.use('/register2',register2Router);

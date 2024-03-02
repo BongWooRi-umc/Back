@@ -42,6 +42,13 @@ sequelize.sync({force: false})
         console.error(err);
     });
 
+    // 테스트 위한 미들웨어 추가
+    // 테스트를 위해 UserId를 고정 값으로 설정 (예시: 1)
+// app.use((req, res, next) => {
+//     req.user = { id: 1 };
+//     next();
+// });
+
 app.use('/register1',register1Router);
 app.use('/register2',register2Router);
 app.use('/auth',authRouter);

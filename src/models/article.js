@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.TEXT,
       allowNull:false,
     },
-    likes: {
+    scrapCount: {
       type:DataTypes.INTEGER,
       defaultValue:0,
     },

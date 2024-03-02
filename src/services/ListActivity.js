@@ -5,7 +5,7 @@ const paging = 9;
 exports.orderByDate = async()=>{
     try{
         list = await Activity.findAll({
-            attribute: ['ActId','title','orgName','isRecur','actType','confirmType'],
+            attributes: ['ActId','title','orgName','isRecur','actType','confirmType'],
             order: [['createdAt','DESC']],
             limit:paging,
         });

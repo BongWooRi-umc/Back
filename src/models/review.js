@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING(128),
       allowNull:false,
     },
+    actDate: {
+      type:DataTypes.DATE,
+      allowNull:false,
+    },
     content: {
       type:DataTypes.TEXT,
       allowNull:false,

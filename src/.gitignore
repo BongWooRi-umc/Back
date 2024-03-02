@@ -1,3 +1,5 @@
 .vscode
 adder
 tmp.js
+app.js
+.env

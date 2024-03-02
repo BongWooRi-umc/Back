@@ -1,4 +1,4 @@
-const { User,Article,Org,Activity,Review,ScrapCommu } = require('../models'); // 모델 파일의 경로에 따라 수정해야 할 수 있습니다.
+const { User,Article,Org,Activity,Review,ScrapCommu,ArticleComment } = require('../models'); // 모델 파일의 경로에 따라 수정해야 할 수 있습니다.
 
 exports.user = async () => {
   try {
@@ -27,16 +27,16 @@ exports.article = async () => {
     const oneDay = 24 * 60 * 60 * 1000; // 1일을 밀리초로 표현
 
     await Article.bulkCreate([
-      { title: 'Introduction to JavaScript', content: 'JavaScript is a powerful scripting language...', likes: 20, viewCount: 500, comments: 10, createdAt: currentDate, updatedAt: currentDate, UserId: 1 },
-      { title: 'Getting Started with Node.js', content: 'Node.js is a JavaScript runtime built on Chrome...', likes: 15, viewCount: 400, comments: 8, createdAt: new Date(currentDate.getTime() - oneDay), updatedAt: new Date(currentDate.getTime() - oneDay), UserId: 2 },
-      { title: 'React Hooks Tutorial', content: 'React Hooks are a new feature...', likes: 25, viewCount: 600, comments: 12, createdAt: new Date(currentDate.getTime() - 2 * oneDay), updatedAt: new Date(currentDate.getTime() - 2 * oneDay), UserId: 3 },
-      { title: 'SQL Basics', content: 'SQL (Structured Query Language) is a standard language...', likes: 18, viewCount: 450, comments: 9, createdAt: new Date(currentDate.getTime() - 3 * oneDay), updatedAt: new Date(currentDate.getTime() - 3 * oneDay), UserId: 4 },
-      { title: 'Introduction to HTML5', content: 'HTML5 is the latest version of HTML...', likes: 22, viewCount: 550, comments: 11, createdAt: new Date(currentDate.getTime() - 4 * oneDay), updatedAt: new Date(currentDate.getTime() - 4 * oneDay), UserId: 5 },
-      { title: 'CSS Flexbox Guide', content: 'Flexbox is a layout model...', likes: 30, viewCount: 700, comments: 15, createdAt: new Date(currentDate.getTime() - 5 * oneDay), updatedAt: new Date(currentDate.getTime() - 5 * oneDay), UserId: 6 },
-      { title: 'Python Crash Course', content: 'Python is a high-level programming language...', likes: 28, viewCount: 650, comments: 13, createdAt: new Date(currentDate.getTime() - 6 * oneDay), updatedAt: new Date(currentDate.getTime() - 6 * oneDay), UserId: 7 },
-      { title: 'Angular Tutorial', content: 'Angular is a platform and framework for building single-page client applications...', likes: 23, viewCount: 580, comments: 10, createdAt: new Date(currentDate.getTime() - 7 * oneDay), updatedAt: new Date(currentDate.getTime() - 7 * oneDay), UserId: 8 },
-      { title: 'Docker Basics', content: 'Docker is a tool designed to make it easier to create, deploy, and run applications...', likes: 20, viewCount: 520, comments: 11, createdAt: new Date(currentDate.getTime() - 8 * oneDay), updatedAt: new Date(currentDate.getTime() - 8 * oneDay), UserId: 9 },
-      { title: 'Introduction to MongoDB', content: 'MongoDB is a document database designed for ease of development and scaling...', likes: 27, viewCount: 670, comments: 14, createdAt: new Date(currentDate.getTime() - 9 * oneDay), updatedAt: new Date(currentDate.getTime() - 9 * oneDay), UserId: 10 }
+      { title: 'Introduction to JavaScript', content: 'JavaScript is a powerful scripting language...', scrapCount: 20, viewCount: 500, comments: 10, createdAt: currentDate, updatedAt: currentDate, UserId: 1 },
+      { title: 'Getting Started with Node.js', content: 'Node.js is a JavaScript runtime built on Chrome...', scrapCount: 15, viewCount: 400, comments: 8, createdAt: new Date(currentDate.getTime() - oneDay), updatedAt: new Date(currentDate.getTime() - oneDay), UserId: 2 },
+      { title: 'React Hooks Tutorial', content: 'React Hooks are a new feature...', scrapCount: 25, viewCount: 600, comments: 12, createdAt: new Date(currentDate.getTime() - 2 * oneDay), updatedAt: new Date(currentDate.getTime() - 2 * oneDay), UserId: 3 },
+      { title: 'SQL Basics', content: 'SQL (Structured Query Language) is a standard language...', scrapCount: 18, viewCount: 450, comments: 9, createdAt: new Date(currentDate.getTime() - 3 * oneDay), updatedAt: new Date(currentDate.getTime() - 3 * oneDay), UserId: 4 },
+      { title: 'Introduction to HTML5', content: 'HTML5 is the latest version of HTML...', scrapCount: 22, viewCount: 550, comments: 11, createdAt: new Date(currentDate.getTime() - 4 * oneDay), updatedAt: new Date(currentDate.getTime() - 4 * oneDay), UserId: 5 },
+      { title: 'CSS Flexbox Guide', content: 'Flexbox is a layout model...', scrapCount: 30, viewCount: 700, comments: 15, createdAt: new Date(currentDate.getTime() - 5 * oneDay), updatedAt: new Date(currentDate.getTime() - 5 * oneDay), UserId: 6 },
+      { title: 'Python Crash Course', content: 'Python is a high-level programming language...', scrapCount: 28, viewCount: 650, comments: 13, createdAt: new Date(currentDate.getTime() - 6 * oneDay), updatedAt: new Date(currentDate.getTime() - 6 * oneDay), UserId: 7 },
+      { title: 'Angular Tutorial', content: 'Angular is a platform and framework for building single-page client applications...', scrapCount: 23, viewCount: 580, comments: 10, createdAt: new Date(currentDate.getTime() - 7 * oneDay), updatedAt: new Date(currentDate.getTime() - 7 * oneDay), UserId: 8 },
+      { title: 'Docker Basics', content: 'Docker is a tool designed to make it easier to create, deploy, and run applications...', scrapCount: 20, viewCount: 520, comments: 11, createdAt: new Date(currentDate.getTime() - 8 * oneDay), updatedAt: new Date(currentDate.getTime() - 8 * oneDay), UserId: 9 },
+      { title: 'Introduction to MongoDB', content: 'MongoDB is a document database designed for ease of development and scaling...', scrapCount: 27, viewCount: 670, comments: 14, createdAt: new Date(currentDate.getTime() - 9 * oneDay), updatedAt: new Date(currentDate.getTime() - 9 * oneDay), UserId: 10 }
     ]);
 
     console.log('article 데이터가 성공적으로 추가되었습니다.');
@@ -319,6 +319,7 @@ exports.review = async () => {
     await Review.bulkCreate([
       { 
         actTitle: 'Summer Camp for Children', 
+        actDate: new Date(currentDate.getTime() - 11 * oneDay), 
         content: 'Great experience for my kids. They had a lot of fun and learned new things.', 
         score: 'five', 
         scrapCount: 10, 
@@ -332,6 +333,7 @@ exports.review = async () => {
       // Add more review examples here
       { 
         actTitle: 'Elderly Care Program', 
+        actDate: new Date(currentDate.getTime() - 25 * oneDay), 
         content: 'Rewarding experience. I enjoyed spending time with the elderly and making them smile.', 
         score: 'four', 
         scrapCount: 8, 
@@ -344,6 +346,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Food Distribution Drive', 
+        actDate: new Date(currentDate.getTime() - 10 * oneDay), 
         content: 'Volunteered for this event last week. It was heartwarming to see so many people come together to help those in need.', 
         score: 'fourHalf', 
         scrapCount: 5, 
@@ -356,6 +359,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Environmental Cleanup Event', 
+        actDate: new Date(currentDate.getTime() - 21 * oneDay), 
         content: 'A wonderful initiative. I participated and felt a sense of accomplishment after cleaning up the park.', 
         score: 'four', 
         scrapCount: 7, 
@@ -368,6 +372,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Tutoring Program for Refugees', 
+        actDate: new Date(currentDate.getTime() - 28 * oneDay), 
         content: 'I volunteered to teach English to refugee children. It was challenging but also very rewarding.', 
         score: 'five', 
         scrapCount: 12, 
@@ -380,6 +385,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Women Empowerment Seminar', 
+        actDate: new Date(currentDate.getTime() - 30 * oneDay), 
         content: 'Attended this seminar and found it inspiring. It motivated me to pursue my goals.', 
         score: 'threeHalf', 
         scrapCount: 3, 
@@ -392,6 +398,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Community Garden Project', 
+        actDate: new Date(currentDate.getTime() -  35* oneDay), 
         content: 'I volunteered to help plant vegetables in the community garden. It was a fun and educational experience.', 
         score: 'four', 
         scrapCount: 6, 
@@ -404,6 +411,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Youth Leadership Conference', 
+        actDate: new Date(currentDate.getTime() - 31 * oneDay), 
         content: 'Attended as a participant. It was well-organized and provided valuable insights into leadership.', 
         score: 'fourHalf', 
         scrapCount: 8, 
@@ -416,6 +424,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Senior Center Volunteer Program', 
+        actDate: new Date(currentDate.getTime() - 15 * oneDay), 
         content: 'Volunteered to play board games with seniors. They appreciated the company and so did I.', 
         score: 'four', 
         scrapCount: 4, 
@@ -428,6 +437,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Health and Wellness Fair', 
+        actDate: new Date(currentDate.getTime() - 35 * oneDay), 
         content: 'Attended with my family. It was informative and we learned a lot about healthy living.', 
         score: 'three', 
         scrapCount: 2, 
@@ -440,6 +450,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Community Cleanup Day', 
+        actDate: new Date(currentDate.getTime() - 15 * oneDay), 
         content: 'Participated in cleaning up the neighborhood. It was a great way to give back to the community.', 
         score: 'fourHalf', 
         scrapCount: 5, 
@@ -452,6 +463,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Youth Mentorship Program', 
+        actDate: new Date(currentDate.getTime() - 25 * oneDay), 
         content: 'Mentored a group of high school students. It was fulfilling to see them grow and succeed.', 
         score: 'five', 
         scrapCount: 12, 
@@ -464,6 +476,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Animal Shelter Volunteer', 
+        actDate: new Date(currentDate.getTime() - 45 * oneDay), 
         content: 'Spent the weekend volunteering at the local animal shelter. It was heartwarming to help the animals in need.', 
         score: 'four', 
         scrapCount: 6, 
@@ -476,6 +489,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Habitat for Humanity Build', 
+        actDate: new Date(currentDate.getTime() - 33 * oneDay), 
         content: 'Participated in building a home for a family in need. It was a humbling and rewarding experience.', 
         score: 'fourHalf', 
         scrapCount: 8, 
@@ -488,6 +502,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Language Exchange Program', 
+        actDate: new Date(currentDate.getTime() - 27 * oneDay), 
         content: 'Joined a language exchange program to practice my Spanish skills. Met some great people and improved my language proficiency.', 
         score: 'threeHalf', 
         scrapCount: 3, 
@@ -500,6 +515,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Community Theater Production', 
+        actDate: new Date(currentDate.getTime() - 41 * oneDay), 
         content: 'Volunteered backstage for a community theater production. It was a fun and creative experience.', 
         score: 'four', 
         scrapCount: 6, 
@@ -512,6 +528,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Soup Kitchen Volunteer', 
+        actDate: new Date(currentDate.getTime() - 29 * oneDay), 
         content: 'Helped serve meals at the local soup kitchen. It was fulfilling to make a difference in the lives of those less fortunate.', 
         score: 'fourHalf', 
         scrapCount: 8, 
@@ -524,6 +541,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Community Health Fair', 
+        actDate: new Date(currentDate.getTime() - 35 * oneDay), 
         content: 'Attended a health fair in the community. Learned valuable information about maintaining a healthy lifestyle.', 
         score: 'three', 
         scrapCount: 2, 
@@ -536,6 +554,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Blood Donation Drive', 
+        actDate: new Date(currentDate.getTime() - 15 * oneDay), 
         content: 'Donated blood at the local blood donation drive. It felt good to contribute to saving lives.', 
         score: 'five', 
         scrapCount: 10, 
@@ -548,6 +567,7 @@ exports.review = async () => {
       },
       { 
         actTitle: 'Volunteer Teaching Program', 
+        actDate: new Date(currentDate.getTime() - 25 * oneDay), 
         content: 'Taught underprivileged children math and science. It was challenging but also very fulfilling.', 
         score: 'four', 
         scrapCount: 8, 
@@ -576,7 +596,7 @@ exports.scrapReview = async () => {
         scrapType: 'review', 
         title: 'Volunteering Experience', 
         context: 'Had a great volunteering experience. It was fulfilling to give back to the community.', 
-        likes: 5, 
+        scrapCount: 5, 
         comments: 2, 
         createdTime: currentDate, 
         ReviewId: 1, 
@@ -587,7 +607,7 @@ exports.scrapReview = async () => {
         scrapType: 'review', 
         title: 'Community Cleanup Day', 
         context: 'Participated in a community cleanup day event. It was a great way to bond with neighbors.', 
-        likes: 8, 
+        scrapCount: 8, 
         comments: 3, 
         createdTime: currentDate, 
         ReviewId: 2, 
@@ -597,7 +617,7 @@ exports.scrapReview = async () => {
         scrapType: 'review', 
         title: 'Teaching English Abroad', 
         context: 'Spent a year teaching English in a rural village. It was a life-changing experience.', 
-        likes: 10, 
+        scrapCount: 10, 
         comments: 4, 
         createdTime: currentDate, 
         ReviewId: 3, 
@@ -607,7 +627,7 @@ exports.scrapReview = async () => {
         scrapType: 'review', 
         title: 'Senior Center Volunteering', 
         context: 'Volunteered at a senior center. It was heartwarming to spend time with the elderly.', 
-        likes: 7, 
+        scrapCount: 7, 
         comments: 3, 
         createdTime: currentDate, 
         ReviewId: 4, 
@@ -618,7 +638,37 @@ exports.scrapReview = async () => {
 
     console.log('Scrap review 데이터가 성공적으로 추가되었습니다.');
   } catch (error) {
-    console.error('예시 데이터 추가 중 오류가 발생했습니다:', error);
+    console.error('Scrap review 데이터 추가 중 오류가 발생했습니다:', error);
   }
 };
 
+exports.articleComment = async () =>{
+    try {
+      const currentDate = new Date();
+      const oneDay = 24 * 60 * 60 * 1000; // 1일을 밀리초로 표현
+  
+      const exampleData = [];
+      for (let i = 0; i < 20; i++) {
+        const randomUserId = Math.floor(Math.random() * 10) + 1;
+        const randomArticleId = Math.floor(Math.random() * 10) + 1;
+        const randomCreatedAt = new Date(currentDate.getTime() - Math.floor(Math.random() * 30) * oneDay);
+        const randomUpdatedAt = new Date(randomCreatedAt.getTime() + Math.floor(Math.random() * 30) * oneDay);
+        const content = `comment${i + 1}`;
+  
+        exampleData.push({
+          content,
+          createdAt: randomCreatedAt,
+          updatedAt: randomUpdatedAt,
+          ArticleId: randomArticleId,
+          UserId: randomUserId
+        });
+      }
+  
+      await ArticleComment.bulkCreate(exampleData);
+  
+      console.log('articleComment 데이터가 성공적으로 추가되었습니다.');
+    } catch (error) {
+      console.error('articleComment 데이터 추가 중 오류가 발생했습니다:', error);
+    }
+  };
+  

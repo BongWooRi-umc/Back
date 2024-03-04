@@ -24,7 +24,7 @@ exports.communityArticle = async(userId)=>{
         } else {
             return {'isSuccess':true,'isLogin':true,'result':list};
         }
-    } catch {
+    } catch (error) {
         console.log(error);
         res.status(500).json({
           code: 500,
